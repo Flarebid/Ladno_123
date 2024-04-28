@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LADNO TOUR - Вход</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+<body>
+<nav class="navbar">
+    <div class="navbar-logo">
+        <a href="main">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt=""></a> LADNO TOUR
+    </div>
+    <div class="navbar-links">
+        <a href="/">Главная</a>
+        <a href="/vote">Голосование</a>
+        <a href="/login" class="active">Войти</a>
+    </div>
+</nav>
+<div class="background-video">
+    <video autoplay loop muted playsinline>
+        <source src="{{ url_for('static', filename='images/video.mp4') }}" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+</div>
+<div class="form-container">
+    <h1>Вход</h1>
+    <div class="separator"></div>
+    <form method="POST" action="/register">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username" class="input-field" placeholder="Введите имя пользователя">
+        <br>
+        <label for="password">Пароль:</label>
+        <input type="text" id="password" name="password" class="input-field" placeholder="Введите пароль">
+        <br>
+        <input type="submit" value="Войти" class="submit-button">
+        <br>
+        <a href="register" class="reg">Зарегистрироваться</a>
+        <div style="height: 20px;"></div>
+    </form>
+</div>
+</body>
+</html>

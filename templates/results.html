@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Итоги голосования</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='results.css') }}">
+</head>
+<body>
+<nav class="navbar">
+    <div class="navbar-logo">
+        <a href="main">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt=""></a> LADNO TOUR
+    </div>
+    <div class="navbar-links">
+        <a href="main" class="active">Главная</a>
+        <a href="index">Голосование</a>
+        <a href="https://yoomoney.ru/fundraise/12CHUNCMJFU.240428">Пополнить</a>
+        <a href="login">Войти</a>
+    </div>
+</nav>
+<h1 class="region">Топ-10 выбранных регионов</h1>
+<div class="district">
+    <div class="districts-wrapper">
+        <ul>
+            {% for region in final_selection %}
+            <li class="district">{{ region }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+</body>
+</html>

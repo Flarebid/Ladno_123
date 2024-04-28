@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>LADNO TOUR - Голосования</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='region.css') }}">
+    <script>
+        $(document).ready(function() {
+            let availableVotes = {{ available_votes }};
+            $('#available-votes').text(availableVotes);
+
+            $('input[type="checkbox"]').change(function() {
+                let district = $(this).closest('.district').attr('id');
+                let checked = $(`#${district} input[type="checkbox"]:checked`).length;
+
+                if (this.checked) {
+                    availableVotes--;
+                    $('#available-votes').text(availableVotes);
+                } else {
+                    availableVotes++;
+                    $('#available-votes').text(availableVotes);
+                }
+
+                if (checked >= 3) {
+                    $(`#${district} input[type="checkbox"]:not(:checked)`).prop('disabled', true);
+                } else {
+                    $(`#${district} input[type="checkbox"]`).prop('disabled', false);
+                }
+
+                if ($('input[type="checkbox"]:checked').length >= 24) {
+                    $('#submit-button').prop('disabled', false);
+                } else {
+                    $('#submit-button').prop('disabled', true);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<nav class="navbar">
+    <div class="navbar-logo">
+        <a href="main">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt=""></a> LADNO TOUR
+    </div>
+    <div class="navbar-links">
+        <a href="main" class="active">Главная</a>
+        <a href="index">Голосование</a>
+        <a href="https://yoomoney.ru/fundraise/12CHUNCMJFU.240428">Пополнить</a>
+        <a href="login">Войти</a>
+    </div>
+</nav>
+<h1 class="region">Выберите до 3 регионов в каждом округе</h1>
+<p class="okryg">Доступные голоса: <span id="available-votes"></span></p>
+<form method="POST" action="/">
+    <div class="districts-wrapper">
+        {% for district, regions in districts.items() %}
+    <div class="district" id="district-{{ loop.index }}">
+        <h2>{{ district }}</h2>
+        {% for region in regions %}
+        <label>
+            <input type="checkbox" name="{{ district }}" value="{{ region }}">
+            {{ region }}
+        </label><br>
+        {% endfor %}
+    </div>
+    {% endfor %}
+        <button type="submit" id="submit-button" disabled>Продолжить голосовать</button>
+</form>
+</body>
+</html>

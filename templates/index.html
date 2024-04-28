@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LADNO TOUR - Главная</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav class="navbar">
+    <div class="navbar-logo">
+        <a href="main">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt=""></a> LADNO TOUR
+    </div>
+    <div class="navbar-links">
+        <a href="main" class="active">Главная</a>
+        <a href="index">Голосование</a>
+        <a href="https://yoomoney.ru/fundraise/12CHUNCMJFU.240428">Пополнить</a>
+        <a href="login">Войти</a>
+    </div>
+</nav>
+<main>
+    <div class="center-text">
+        <h2 class="main-text">Откройте для себя новые горизонты</h2>
+        <div class="separator"></div>
+        <h2 class="main-text-two">Откройте для себя самые потрясающие<br> места в России и спланируйте свой отдых</h2>
+    </div>
+    <div class="background-video">
+        <video autoplay loop muted playsinline>
+            <source src="{{ url_for('static', filename='images/video.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="overlay"></div>
+        <div class="black-line"></div>
+    </div>
+    <div class="black-line"></div>
+    <div class="about">
+        <h2 class="about-title">Путешествие в лето</h2>
+        <h2 class="about-title-two">Расскажем, как провести самый яркий сезон в России<br> и получить максимум впечатлений</h2>
+        <div class="card-container">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/1.jpg') }}" alt="">
+                <h2>Погружайся</h2>
+            </div>
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/2.jpg') }}" alt="">
+                <h2>Исследуй лучшие<br>маршруты</h2>
+            </div>
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/3.jpg') }}" alt="">
+                <h2>Наслаждайся поездкой</h2>
+            </div>
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/4.jpg') }}" alt="">
+                <h2>Смотри на самые<br>красивые виды</h2>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
